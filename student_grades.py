@@ -30,9 +30,26 @@ class StudentsGrades:
                 indexy.append(i)
         return indexy
 
+    def get_sorted(self):
+        scores = self.scores.copy()
+        for x in range(len(scores) - 1):
+            for i in range(len(scores) - 1 - x):
+                if scores[i] > scores[i + 1]:
+                    scores[i], scores[i + 1] = scores[i + 1], scores[i]
+        return scores
 
 results = StudentsGrades([85, 42, 91, 67, 50, 73, 100, 38, 58])
 
-print(results.find(100))  # [6]
-print(results.find(50))   # [4]
-print(results.find(77))   # []
+def main():
+    print(f"Počet studentů: {results.count()}")
+    for n in range(results.count()):
+        print(f"Student {n}: {results.get_by_index(n)} points - {results.get_grade(n)}")
+    sto_bodu = []
+    for n in range(results.count()):
+        if results.get_by_index(n) == 100:
+            sto_bodu.append(n)
+    print(f"Plný počet bodů měli studenti indexů: {sto_bodu}")
+    print(f"Seřazené výsledky: {results.get_sorted()}")
+    return None
+
+main()
