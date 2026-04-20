@@ -38,6 +38,17 @@ class StudentsGrades:
                     scores[i], scores[i + 1] = scores[i + 1], scores[i]
         return scores
 
+    def average(self):
+        return sum(self.scores)/len(self.scores)
+
+    def best(self):
+        poradi = sorted(self.scores)
+        return poradi[-1]
+
+    def worst(self):
+        poradi = sorted(self.scores)
+        return poradi[0]
+
 results = StudentsGrades([85, 42, 91, 67, 50, 73, 100, 38, 58])
 
 def main():
@@ -52,4 +63,5 @@ def main():
     print(f"Seřazené výsledky: {results.get_sorted()}")
     return None
 
-main()
+if __name__ == "__main__":
+    print(results.worst())
